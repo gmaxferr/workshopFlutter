@@ -161,7 +161,6 @@ class _NoteListPageState extends State<NoteListPage> {
                     itemBuilder: (context, index) {
                       final Note currentNote = state.noteList[index];
                       return SizedBox(
-                        height: 50,
                         width: MediaQuery.of(context).size.width,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -173,7 +172,7 @@ class _NoteListPageState extends State<NoteListPage> {
                                 Row(
                                   children: [
                                     Text(
-                                        "${AppLocalizations.of(context)!.noteListPage_title}:",
+                                        "${AppLocalizations.of(context)!.noteListPage_createNote_title}:",
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16)),
