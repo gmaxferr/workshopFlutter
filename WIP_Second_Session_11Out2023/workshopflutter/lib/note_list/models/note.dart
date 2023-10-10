@@ -1,20 +1,28 @@
 import 'dart:convert';
 
-class Note {
+import 'package:equatable/equatable.dart';
+
+class Note extends Equatable {
   final DateTime createdAt;
   final DateTime lastChangeDate;
   final String noteTitle;
   final String noteContent;
+  late final String _id;
 
   Note({
     required this.createdAt,
     required this.lastChangeDate,
     required this.noteTitle,
     required this.noteContent,
-  });
+  }) {
+    _id = "${DateTime.now().millisecondsSinceEpoch}";
+  }
+
+  String get id => _id;
 
   Note._fromMap(Map raw)
-      : createdAt = DateTime.parse(raw["createdAt"]),
+      : _id = raw["_id"],
+        createdAt = DateTime.parse(raw["createdAt"]),
         lastChangeDate = DateTime.parse(raw["lastChangeDate"]),
         noteContent = raw["noteContent"],
         noteTitle = raw["noteTitle"];
@@ -35,6 +43,7 @@ class Note {
 
   String serialize() {
     return jsonEncode({
+      "_id": _id,
       "createdAt": createdAt.toIso8601String(),
       "lastChangeDate": lastChangeDate.toIso8601String(),
       "noteTitle": noteTitle,
@@ -46,5 +55,13 @@ class Note {
     Map raw = jsonDecode(serializedNote);
     return Note._fromMap(raw);
   }
-}
 
+  @override
+  List<Object?> get props => [
+        _id,
+        createdAt,
+        lastChangeDate,
+        noteContent,
+        noteTitle,
+      ];
+}

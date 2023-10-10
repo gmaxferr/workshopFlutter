@@ -1,0 +1,52 @@
+{
+  "noteListPage_title": "The Notes App",
+  "@noteListPage_title": {
+    "description": "The title that shows on the top of the NoteListPage"
+  },
+  "noteListPage_numberOfNotes": "Total Notes: {nrNotes}",
+  "@noteListPage_numberOfNotes": {
+    "description": "A label that shows on the app bar and shows the number of notes.",
+    "placeholders": {
+      "nrNotes": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noteListPage_emptyNoteDescription": "Added notes will be listed here.",
+  "@noteListPage_emptyNoteDescription": {
+    "description": "The description that shows on the NoteListPage when Notes list is empty."
+  },
+  "noteListPage_createNote_dialogTitle": "Insert Note",
+  "@noteListPage_createNote_dialogTitle": {
+    "description": "The create note dialog title"
+  },
+  "noteListPage_createNote_title": "Title",
+  "@noteListPage_createNote_title": {
+    "description": "The note title"
+  },
+  "noteListPage_createNote_add": "Add",
+  "@noteListPage_createNote_add": {
+    "description": "Add label on the button that creates the note inside the Note creation Dialog"
+  },
+  "noteListPage_createNote_cancel": "Cancel",
+  "@noteListPage_createNote_cancel": {
+    "description": "Cancel label on the button that creates the note inside the Note creation Dialog"
+  },
+  "noteListPage_createNote_tooltip": "Insert Note",
+  "@noteListPage_createNote_tooltip": {
+    "description": "The tooltip text of the floatingActionButton for note creation"
+  },
+  "noteListPage_createNote_content": "Content",
+  "@noteListPage_createNote_content": {
+    "description": "The note content"
+  },
+  "noteListPage_createNote_createdAt": "Created At",
+  "@noteListPage_createNote_createdAt": {
+    "description": "The note createdAt"
+  },
+  "noteListPage_createNote_lastChangeDate": "Last Change Date",
+  "@noteListPage_createNote_lastChangeDate": {
+    "description": "The note lastChangeDate"
+  }
+}
