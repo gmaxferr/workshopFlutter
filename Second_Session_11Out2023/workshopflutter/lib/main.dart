@@ -57,7 +57,6 @@ class MyApp extends StatelessWidget {
             //   '/' : (context) => const NoteListPage(),
             //   '/edit' : (context) => const NoteEditPage(),
             // },
-            // routes: RouteGenerator.routes,
             navigatorKey: navigatorKey,
             onGenerateRoute: RouteGenerator.generateRoute,
             locale: locale,

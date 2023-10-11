@@ -13,10 +13,7 @@ class AppRoutes {
 }
 
 class RouteGenerator {
-  // static Map<String, Widget Function(BuildContext context)> routes = {
-  //   AppRoutes.noteList: (_) => const NoteListPage(),
-  //   AppRoutes.noteEdit: (_) => const LoginPage(),
-  // };
+  
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     Uri? settingsUri;
     if (settings.name != null) {

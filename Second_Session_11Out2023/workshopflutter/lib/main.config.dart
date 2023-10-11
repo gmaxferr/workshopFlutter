@@ -34,8 +34,9 @@ extension GetItInjectableX on _i1.GetIt {
     final registerModule = _$RegisterModule();
     gh.singleton<_i3.LanguageBloc>(_i3.LanguageBloc());
     gh.factoryAsync<_i4.SharedPreferences>(() => registerModule.prefs);
-    gh.factoryAsync<_i5.NoteListStorage>(() async => _i5.NoteListStorageSQflite(
-        shInstance: await getAsync<_i4.SharedPreferences>()));
+    gh.factoryAsync<_i5.NoteListStorage>(() async =>
+        _i5.NoteListStorageSharedPreferences(
+            shInstance: await getAsync<_i4.SharedPreferences>()));
     gh.singletonAsync<_i6.NoteListRepository>(() async =>
         _i6.NoteListRepository(
             storageInstance: await getAsync<_i5.NoteListStorage>()));

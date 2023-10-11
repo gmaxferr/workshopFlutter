@@ -9,10 +9,10 @@ abstract interface class NoteListStorage {
 }
 
 @Injectable(as: NoteListStorage)
-class NoteListStorageSQflite implements NoteListStorage {
+class NoteListStorageSharedPreferences implements NoteListStorage {
   final SharedPreferences shInstance;
 
-  NoteListStorageSQflite({required this.shInstance});
+  NoteListStorageSharedPreferences({required this.shInstance});
 
   // {
   //   "<noteId_X>": "<serielized_noteX>",

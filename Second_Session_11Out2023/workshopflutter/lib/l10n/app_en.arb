@@ -1,4 +1,8 @@
 {
+  "noteEditPage_titleXXXXX": "Edit Note",
+  "@noteEditPage_titleXXXXX": {
+    "description": "The title that shows on the top of the NoteEditPage"
+  },
   "noteEditPage_title": "Edit Note",
   "@noteEditPage_title": {
     "description": "The title that shows on the top of the NoteEditPage"

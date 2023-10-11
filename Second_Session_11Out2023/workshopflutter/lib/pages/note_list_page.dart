@@ -236,8 +236,7 @@ class NoteListPage extends StatelessWidget {
                                               NoteEditEventSetNote(
                                                   editNote: currentNote),
                                             );
-                                        Navigator.pushNamed(
-                                            context, AppRoutes.noteEdit);
+                                        Navigator.pushNamed(context, AppRoutes.noteEdit);
                                       },
                                       icon: const Icon(Icons.edit,
                                           color: Colors.white)),
