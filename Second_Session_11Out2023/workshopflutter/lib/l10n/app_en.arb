@@ -1,4 +1,12 @@
 {
+  "noteEditPage_title": "Edit Note",
+  "@noteEditPage_title": {
+    "description": "The title that shows on the top of the NoteEditPage"
+  },
+  "noteListPage_save": "Save",
+  "@noteListPage_save": {
+    "description": "The tooltip text of the floatingActionButton for note update"
+  },
   "noteListPage_title": "The Notes App",
   "@noteListPage_title": {
     "description": "The title that shows on the top of the NoteListPage"

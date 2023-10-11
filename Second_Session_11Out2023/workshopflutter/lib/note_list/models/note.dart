@@ -18,8 +18,25 @@ class Note extends Equatable {
     _id = "${DateTime.now().millisecondsSinceEpoch}";
   }
 
+  Note.empty()
+      : _id = "EMPTY",
+        createdAt = DateTime(0),
+        lastChangeDate = DateTime(0),
+        noteContent = "",
+        noteTitle = "";
+
   String get id => _id;
 
+  Note._forceId({
+    required String id,
+    required this.createdAt,
+    required this.lastChangeDate,
+    required this.noteTitle,
+    required this.noteContent,
+  }) {
+    _id = id;
+  }
+  
   Note._fromMap(Map raw)
       : _id = raw["_id"],
         createdAt = DateTime.parse(raw["createdAt"]),
@@ -33,7 +50,8 @@ class Note extends Equatable {
     String? noteTitle,
     String? noteContent,
   }) {
-    return Note(
+    return Note._forceId(
+      id: _id,
       createdAt: createdAt ?? this.createdAt,
       lastChangeDate: lastChangeDate ?? this.lastChangeDate,
       noteContent: noteContent ?? this.noteContent,

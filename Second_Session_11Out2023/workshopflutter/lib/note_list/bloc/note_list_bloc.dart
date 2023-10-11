@@ -11,7 +11,8 @@ part 'note_list_state.dart';
 
 enum NoteListStatus { loaded, loading }
 
-@singleton
+@Singleton()
+@Injectable()
 class NoteListBloc extends Bloc<NoteListEvent, NoteListState> {
   final NoteListRepository repository;
 

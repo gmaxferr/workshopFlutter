@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:workshopflutter/config/route_generator.dart';
 import 'package:workshopflutter/language/blocs/language_bloc.dart';
 import 'package:workshopflutter/language/models/language_model.dart';
+import 'package:workshopflutter/note_list/bloc/note_edit_bloc.dart';
 import 'package:workshopflutter/note_list/bloc/note_list_bloc.dart';
 import 'package:workshopflutter/main.dart';
 import 'package:workshopflutter/note_list/models/note.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class NoteListPage extends StatefulWidget {
+class NoteListPage extends StatelessWidget {
   const NoteListPage({super.key});
 
-  @override
-  State<NoteListPage> createState() => _NoteListPageState();
-}
-
-class _NoteListPageState extends State<NoteListPage> {
-  void _insertNote() async {
+  void _insertNote(BuildContext context) async {
     Note? note = await showDialog<Note>(
         context: context,
         builder: (BuildContext context) {
@@ -124,7 +122,7 @@ class _NoteListPageState extends State<NoteListPage> {
                 p.status != c.status,
             builder: (context, state) {
               return DropdownButton<LanguageModel>(
-                value: state.currentLanguage,
+                  value: state.currentLanguage,
                   items: state.availableLanguages
                       .map<DropdownMenuItem<LanguageModel>>(
                           (_) => DropdownMenuItem(
@@ -142,7 +140,7 @@ class _NoteListPageState extends State<NoteListPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _insertNote,
+        onPressed: () => _insertNote(context),
         tooltip: AppLocalizations.of(context)!.noteListPage_createNote_tooltip,
         child: const Icon(Icons.add),
       ),
@@ -205,8 +203,8 @@ class _NoteListPageState extends State<NoteListPage> {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     const SizedBox(width: 5),
-                                    Text(currentNote.createdAt
-                                        .toIso8601String()),
+                                    Text(DateFormat('dd/MM/yyyy  kk:mm:ss')
+                                        .format(currentNote.createdAt)),
                                   ],
                                 ),
                                 Row(
@@ -220,24 +218,43 @@ class _NoteListPageState extends State<NoteListPage> {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     const SizedBox(width: 5),
-                                    Text(currentNote.lastChangeDate
-                                        .toIso8601String()),
+                                    Text(DateFormat('dd/MM/yyyy  kk:mm:ss')
+                                        .format(currentNote.lastChangeDate)),
                                   ],
+                                ),
+                                const Divider(),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 5, left: 15),
+                                  child: IconButton.filled(
+                                      onPressed: () {
+                                        serviceLocator.get<NoteEditBloc>().add(
+                                              NoteEditEventSetNote(
+                                                  editNote: currentNote),
+                                            );
+                                        Navigator.pushNamed(
+                                            context, AppRoutes.noteEdit);
+                                      },
+                                      icon: const Icon(Icons.edit,
+                                          color: Colors.white)),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 15, left: 5),
+                                  child: IconButton.filled(
+                                      onPressed: () => serviceLocator
+                                          .get<NoteListBloc>()
+                                          .add(NoteListEventDeleteNote(
+                                              noteId: currentNote.id)),
+                                      icon: const Icon(Icons.delete_forever,
+                                          color: Colors.white)),
                                 )
                               ],
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 15, left: 15),
-                              child: IconButton.filled(
-                                  color: Colors.red,
-                                  onPressed: () => serviceLocator
-                                      .get<NoteListBloc>()
-                                      .add(NoteListEventDeleteNote(
-                                          noteId: currentNote.id)),
-                                  icon: const Icon(Icons.delete_forever,
-                                      color: Colors.white)),
-                            )
                           ],
                         ),
                       );

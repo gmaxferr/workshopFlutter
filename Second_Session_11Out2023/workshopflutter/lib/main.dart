@@ -2,18 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workshopflutter/config/route_generator.dart';
 import 'package:workshopflutter/language/blocs/language_bloc.dart';
-import 'package:workshopflutter/pages/note_list_page.dart';
 import 'main.config.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies();
-  // SharedPreferences.getInstance().then((value) => value.clear());
-  runApp(const MyApp());
-}
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -30,6 +23,13 @@ Future<void> configureDependencies() async {
   serviceLocator.init();
   await serviceLocator.allReady();
 }
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
+  runApp(const MyApp());
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -53,10 +53,17 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
+            // routes: {
+            //   '/' : (context) => const NoteListPage(),
+            //   '/edit' : (context) => const NoteEditPage(),
+            // },
+            // routes: RouteGenerator.routes,
+            navigatorKey: navigatorKey,
+            onGenerateRoute: RouteGenerator.generateRoute,
             locale: locale,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            home: const NoteListPage(),
+            initialRoute: '/',
           );
         });
   }
